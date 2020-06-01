@@ -1,10 +1,13 @@
 """
 实例1：利用aiocqhttp作为httpapi的服务端
 """
-
+import ctypes
 import platform
 import os
 import sys
+
+current_dir = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(current_dir)
 
 if platform.system() == "Linux":
     if "-g" not in sys.argv[1:]:
@@ -23,9 +26,9 @@ do
     fi
 done
 """.format(
-    './yobot' if '_MEIPASS' in dir(sys) else 'python3 main.py'
-)
-)
+                './yobot' if '_MEIPASS' in dir(sys) else 'python3 main.py'
+            )
+            )
         print('请通过"sh yobotg.sh"启动')
         sys.exit()
     if os.path.exists('.YOBOT_RESTART'):
