@@ -13,7 +13,7 @@ from urllib.parse import urljoin
 import requests
 from aiocqhttp.api import Api
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from opencc import OpenCC
+# from opencc import OpenCC
 from quart import Quart, send_file
 
 if __package__:
@@ -179,8 +179,8 @@ class Yobot:
             return await send_file(os.path.join(dirname, "output", filename))
 
         # openCC
-        self.ccs2t = OpenCC(self.glo_setting.get("zht_out_style", "s2t"))
-        self.cct2s = OpenCC("t2s")
+        # self.ccs2t = OpenCC(self.glo_setting.get("zht_out_style", "s2t"))
+        # self.cct2s = OpenCC("t2s")
 
         # update runtime variables
         self.glo_setting.update({
@@ -272,8 +272,8 @@ class Yobot:
                 raise ValueError('unsupport return type: {}'.format(type(ret)))
 
         if reply_msg:
-            if self.glo_setting.get("zht_out", False):
-                reply_msg = self.ccs2t.convert(reply_msg)
+            # if self.glo_setting.get("zht_out", False):
+                # reply_msg = self.ccs2t.convert(reply_msg)
             return reply_msg
 
         # run
@@ -302,8 +302,8 @@ class Yobot:
         reply_msg = "\n".join(replys)
 
         # zhs-zht convertion
-        if self.glo_setting.get("zht_out", False):
-            reply_msg = self.ccs2t.convert(reply_msg)
+        # if self.glo_setting.get("zht_out", False):
+            # reply_msg = self.ccs2t.convert(reply_msg)
 
         return reply_msg
 
